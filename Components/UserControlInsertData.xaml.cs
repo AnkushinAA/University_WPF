@@ -10,18 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace University_WPF.Windows
-{
-    /// <summary>
-    /// Логика взаимодействия для StudentMenuWindow.xaml
-    /// </summary>
-    public partial class StudentMenuWindow : Window
+namespace University_WPF.Components
+{   
+    public partial class UserControlInsertData : UserControl
     {
-        public StudentMenuWindow()
+        public string TitleUC { get; set; }
+        public UserControlInsertData()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
     }
 }

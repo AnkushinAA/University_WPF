@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace University_WPF
+namespace University_WPF.Windows
 {
     /// <summary>
     /// Логика взаимодействия для Authorization.xaml
@@ -40,7 +40,7 @@ namespace University_WPF
         {
             if (CompareAuthenticationData(Login.Text, Passsword.Password))
             {
-                new MenuWindow().Show();
+                new MainWindow().Show();
                 this.Close();
             }
             else MessageBox.Show("Введен не правильный логин или пароль!");

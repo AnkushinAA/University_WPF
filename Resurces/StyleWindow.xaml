@@ -32,6 +32,7 @@
     <Style x:Key="Button_A" TargetType="Button">
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Width" Value="70"/>
+        <Setter Property="Height" Value="35"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Template">
             <Setter.Value>
