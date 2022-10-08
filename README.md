@@ -16,4 +16,5 @@
   - показа успеваемости студента.
 
 Работа выполнялась в Visual Studio 22.
+
 SQLite база данных создана в DB Browser for SQLite Version 3.12.2.
