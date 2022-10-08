@@ -1,40 +1,51 @@
 ﻿using System;
 using System.Data.Common;
+using University_WPF.ViewModels;
 
 namespace University_WPF.Model
 {
-    public class Person
-    {
-        private Adress adress;
-
-        public Person(string firstName, string lastName, DateTime birthday, Adress adress, Contact contactPerson)
+    public class Person: Model
+    {        
+        public Person()
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Birthday = birthday;
-            this.adress = adress;
-            ContactPerson = contactPerson;
+            Adress = new Adress();
+            Contact = new Contact();
         }
-
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime Birthday { get; set; }
-        public Adress AdressPerson { get; set; }
-        public Contact ContactPerson { get; set; }
+        private string _lastName;
+        private string _firstName;
+        private string _birthday;
+        public string FirstName
+        {
+            get => _firstName;
+            set
+            {
+                if (_firstName == value) return;
+                _firstName = value;
+                OnPropertyChanged(nameof(_firstName));
+            }
+        }
+        public string LastName 
+        {
+            get => _lastName;
+            set 
+            {
+                if (_lastName == value) return;
+                _lastName = value;
+                OnPropertyChanged(nameof(_lastName));
+            }
+        }
+        public string Birthday
+        {
+            get => _birthday;
+            set
+            {
+                if (_birthday == value) return;
+                _birthday = value;
+                OnPropertyChanged(nameof(_birthday));
+            }
+        }
+        public Adress Adress { get; set; }
+        public Contact Contact { get; set; }
         
-        public class Adress
-        {
-            public string City { get; set; }
-            public string Street { get; set; }
-            public int Home { get; set; }
-           
-        }
-
-        public class Contact
-        {
-            public string Phone { get; set; }
-            public string Mail { get; set; }
-           
-        }
     }
 }

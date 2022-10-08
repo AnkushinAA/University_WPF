@@ -7,36 +7,72 @@
          xmlns:vm="clr-namespace:University_WPF.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True"
+        Height="450" Width="1100" Background="LightSkyBlue">
+    <WindowChrome.WindowChrome>
+        <WindowChrome/>
+    </WindowChrome.WindowChrome>
     <Window.Resources>
         <ResourceDictionary Source="..\Resurces\StyleWindow.xaml"/>
     </Window.Resources>
     <DockPanel Background="{StaticResource Background}">
         <DockPanel Height="auto" DockPanel.Dock="Top" Margin="5">
-            <Border BorderThickness="1" BorderBrush="Gray">
-                <TextBlock Text="программа Университет" DockPanel.Dock="Left" FontSize="20" Padding="3"/>
+            <Border Style="{StaticResource Border}">
+                <DockPanel>
+                    <TextBlock Text="программа Университет" DockPanel.Dock="Left" FontSize="20" Padding="3"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="_" Click="MinimizeClick" Style="{StaticResource SystemButton}" HorizontalAlignment="Right"/>
+                        <Button Content="O" Click="FullScrenClick" Style="{StaticResource SystemButton}" HorizontalAlignment="Right"/>
+                        <Button Content="X" Click="ExitClick" Style="{StaticResource SystemButton}" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </DockPanel>                
             </Border>
-        </DockPanel>
-        <TabControl Background="{StaticResource Background}">
+        </DockPanel>       
+        <TabControl Background="{StaticResource Background}" Margin="5">
             <TabItem Header="Студенты" >
-                <Grid Margin="5" >
+                <Grid >
                     <Grid.DataContext>
                         <vm:Students/>
                     </Grid.DataContext>
-                    <DataGrid  ItemsSource="{Binding StudentList}" AutoGenerateColumns="False" IsReadOnly="False" SelectedIndex="0">
+                    <DataGrid x:Name="StudentsData" ItemsSource="{Binding StudentList}" AutoGenerateColumns="False" IsReadOnly="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
-                            <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
-                            <DataGridTextColumn Header="Дата рождения" Binding="{Binding Birthday, StringFormat=dd.mm.yyyy}"/>
-                            <DataGridTextColumn Header="Город" Binding="{Binding AdressPerson.City}" />
-                            <DataGridTextColumn Header="Улица" Binding="{Binding AdressPerson.Street}"/>
-                            <DataGridTextColumn Header="дом" Binding="{Binding AdressPerson.Home}"/>
-                            <DataGridTextColumn Header="Телефон" Binding="{Binding ContactPerson.Phone}"/>
-                            <DataGridTextColumn Header="Email" Binding="{Binding ContactPerson.Mail}"/>
-                            <DataGridTextColumn Header="Оценки" />
-                            <DataGridTextColumn Header="Статус" Binding="{Binding IsStudy}"/>
-                        </DataGrid.Columns>                        
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.LastName}" Width="auto" FontSize="16"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Person.FirstName}" Width="auto" FontSize="16"/>
+                            <DataGridTextColumn Header="Дата рождения" Binding="{Binding Person.Birthday}" Width="auto" FontSize="16"/>
+                            <DataGridTextColumn Header="Город" Binding="{Binding Person.Adress.City}" Width="auto" FontSize="16"/>
+                            <DataGridTextColumn Header="Улица" Binding="{Binding Person.Adress.Street}" Width="auto" FontSize="16"/>
+                            <DataGridTextColumn Header="дом" Binding="{Binding Person.Adress.Home}" Width="auto" FontSize="16"/>
+                            <DataGridTextColumn Header="Телефон" Binding="{Binding Person.Contact.Phone}" Width="auto" FontSize="16"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Person.Contact.Mail}" Width="auto" FontSize="16"/>
+                            <DataGridTemplateColumn Header="Успеваемость" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Оценки" Style="{StaticResource SystemButton}" FontSize="9" Width="auto" Height="24" Margin="0" Click="ShowMarks"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding IsStudy}" Width="auto" FontSize="16"/>
+                            <DataGridTemplateColumn Header="Изменение" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Изменить" Style="{StaticResource SystemButton}" FontSize="9" Width="auto" Height="24" Margin="0" Click="ShowMarks"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Увольнение" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Отчислить" Style="{StaticResource SystemButton}" FontSize="9" Width="auto" Height="24" Margin="0" Click="ShowMarks"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>                       
                     </DataGrid>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">                       
+                        <Button Style="{StaticResource Button_A}" Content="Новый Студент" Width="auto" Click="CreateStudentButton"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Учителя"></TabItem>

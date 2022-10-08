@@ -7,23 +7,37 @@ using System.Threading.Tasks;
 
 namespace University_WPF.Model
 {
-    public class Student : Person
+    public class Student: Model 
     {
-        public Student( string firstName, string lastName, DateTime birthday, Adress adress, Contact contactPerson) : base(firstName, lastName, birthday, adress, contactPerson)
+        private Person _person;
+
+        public Person Person 
+        {
+            get => _person;
+            set
+            {
+                if (_person == value) return;
+                _person = value;
+                OnPropertyChanged(nameof(_person));
+            }
+        }
+        public bool IsStudy { get; set; }
+
+        public Dictionary<string, List<int>> Marks { get; set; }
+        public Student()
         {
             IsStudy = true;
             List<int> list = new List<int>();
             Marks = new Dictionary<string, List<int>>();
-            foreach ( string str in Subjects.subjects)
+            foreach (string str in Subjects.subjects)
             {
                 Marks.Add(str, list);
-            }
+            } 
+            Person = new Person();
         }
                 
 
-        public bool IsStudy { get; set; }
-        
-        public Dictionary<string,List<int>> Marks { get; set; }
+       
 
        
     }

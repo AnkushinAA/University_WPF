@@ -1,0 +1,43 @@
+﻿<Window x:Class="University_WPF.Windows.CreateStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:University_WPF.Components"
+        xmlns:local="clr-namespace:University_WPF.Windows"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True"
+        Height="auto" Width="600" Background="LightSkyBlue">
+    <WindowChrome.WindowChrome>
+        <WindowChrome/>
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <ResourceDictionary Source="..\Resurces\StyleWindow.xaml"/>
+    </Window.Resources>
+    <Grid>       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>           
+        </Grid.RowDefinitions>
+        <DockPanel Height="auto" DockPanel.Dock="Top" Margin="5" Grid.Row="0">
+            <Border Style="{StaticResource Border}">
+                <DockPanel>
+                    <TextBlock Text="программа Университет" DockPanel.Dock="Left" FontSize="20" Padding="3"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="_" Click="MinimizeClick" Style="{StaticResource SystemButton}" HorizontalAlignment="Right"/>
+                        <Button Content="O" Click="FullScrenClick" Style="{StaticResource SystemButton}" HorizontalAlignment="Right"/>
+                        <Button Content="X" Click="ExitClick" Style="{StaticResource SystemButton}" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </DockPanel>
+        <Label Grid.Row="1" Content="Новый студент" FontSize="20" HorizontalAlignment="Center"/>
+        <uc:UserControlCreatePerson Grid.Row="2" x:Name="PersonUC"/>        
+        <uc:UserControlTwoButton Grid.Row="3" TextFirstButton="Создать" TextLastButton="Отмена" FirstClick="CreateStudentButton" LastClick="CanselButton"/>        
+    </Grid>
+</Window>

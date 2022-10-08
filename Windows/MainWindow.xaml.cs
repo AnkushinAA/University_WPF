@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using University_WPF.Model;
+using University_WPF.ViewModels;
 
 namespace University_WPF.Windows
 {
@@ -22,6 +24,39 @@ namespace University_WPF.Windows
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+       
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void MinimizeClick(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void FullScrenClick(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal) WindowState = WindowState.Maximized;
+            else WindowState = WindowState.Normal;
+        }
+
+        private void ShowMarks(object sender, RoutedEventArgs e)
+        {
+            var person = ((Student)StudentsData.SelectedItem).Person;
+            new ShowMarksWindow(person.LastName, person.FirstName).Show();           
+            
+        }
+
+        private void CreateStudentButton(object sender, RoutedEventArgs e)
+        {          
+            var a = new CreateStudentWindow();
+            a.Show();
+            if (a.Student !=null) StudentsData.Items.Add(a.Student);
+            
+            
         }
     }
 }

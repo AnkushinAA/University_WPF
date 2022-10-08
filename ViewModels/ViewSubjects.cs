@@ -5,50 +5,45 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Markup;
 using University_WPF.configurations;
 using University_WPF.Model;
 
 namespace University_WPF.ViewModels
 {
-    public class Students : ViewModel
+    public class ViewSubjects: ViewModel
     {
-        public string AllSelectStr = "SELECT * FROM students " +
-            "JOIN persons on persons.Id = students.PersonId";
-        public FileConfig FileConfig = new FileConfig();
-       
-        public ObservableCollection<Student> StudentList { get; set; }
-        //private Student _student;
-        //public Student Student 
-        //{
-        //    get => _student;
-        //    set
-        //    {
-        //        if (_student == value) return;
-        //        _student = value;
-        //        OnPropertyChanged();
-        //    } 
-        //}
-        public Students()
+        public string AllSelectStr = "SELECT * FROM cultureSubject, historySubject, matematicSubject, languageSubject, phisicsSubject" +              
+               "WHERE  historySubject.StudentsId = students.Id" +
+               "AND matematicSubject.StudentsId = students.Id" +
+               "AND languageSubject.StudentsId = students.Id" +
+               "AND phisicsSubject.StudentsId = students.Id";
+        private FileConfig _fileConfig = new FileConfig();
+
+        private ObservableCollection<Student> _students;
+        public ObservableCollection<Student> StudentList
+        {
+            get => _students;
+            set
+            {
+                if (_students == value) return;
+                _students = value;
+                OnPropertyChanged(nameof(StudentList));
+            }
+        }
+        public ViewSubjects()
         {
             StudentList = new ObservableCollection<Student>();
-            using (var connection = new SqliteConnection(FileConfig.ConectionStr))
+            using (var connection = new SqliteConnection(_fileConfig.ConectionStr))
             {
-                connection.Open();
-                //SqliteCommand commandInsert = new SqliteCommand();
-                //commandInsert.Connection = connection;
-                //commandInsert.CommandText = "INSERT INTO students (PersonID, IsStudy)" +
-                //    "VALUES (2, true)";
-                //commandInsert.ExecuteNonQuery();
+                connection.Open();                
                 SqliteCommand command = new SqliteCommand(AllSelectStr, connection);
                 using (SqliteDataReader reader = command.ExecuteReader())
                 {
-                    if(reader.HasRows)
+                    if (reader.HasRows)
                     {
-                        while(reader.Read())
+                        while (reader.Read())
                         {
-                            Console.WriteLine($"{reader.GetString(4)}{reader.GetString(2)}");
+                            //Console.WriteLine($"{reader.GetString(4)}{reader.GetString(2)}");
                             Student student = new Student();
                             student.Person.LastName = reader.GetString(4);
                             student.Person.FirstName = reader.GetString(5);
@@ -65,6 +60,7 @@ namespace University_WPF.ViewModels
                 }
             }
         }
-       
     }
+
 }
+

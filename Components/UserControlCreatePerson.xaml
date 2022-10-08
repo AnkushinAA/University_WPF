@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="University_WPF.Components.UserControlCreatePerson"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:University_WPF.Components"             
+             mc:Ignorable="d"
+             x:Name="CreatePersonUC"
+             Height="auto" Width="500" Background="LightSkyBlue">    
+    <UserControl.Resources>
+        <ResourceDictionary Source="..\Resurces\StyleWindow.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>            
+        </Grid.RowDefinitions>
+        <local:UserControlInsertData x:Name="Surname" TitleUC="Фамилия:" Grid.Row="0"/>
+        <local:UserControlInsertData x:Name="Name" TitleUC="Имя:" Grid.Row="1"/>
+        <local:UserControlInsertData x:Name="DateBirth" TitleUC="Дата рождения:" Grid.Row="2"/>
+        <local:UserControlInsertData x:Name="City" TitleUC="Город:" Grid.Row="3"/>
+        <local:UserControlInsertData x:Name="Street" TitleUC="Улица:" Grid.Row="4"/>
+        <local:UserControlInsertData x:Name="Home" TitleUC="Дом:" Grid.Row="5"/>
+        <local:UserControlInsertData x:Name="Phone" TitleUC="Телефон:" Grid.Row="6"/>
+        <local:UserControlInsertData x:Name="Email" TitleUC="Email:" Grid.Row="7"/>
+    </Grid>
+</UserControl>

@@ -9,29 +9,11 @@ namespace University_WPF.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        
+
         protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
         {
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-            PropertyChangedEventHandler? handlers = PropertyChanged;
-            if (handlers is null)
-            {
-                return;
-            }
-
-            Delegate[] invocation_list = handlers.GetInvocationList();
-
-            PropertyChangedEventArgs arg = new(PropertyName);
-            foreach (Delegate action in invocation_list)
-            {
-                if (action.Target is DispatcherObject disp_object)
-                {
-                    _ = disp_object.Dispatcher.Invoke(action, this, arg);
-                }
-                else
-                {
-                    _ = action.DynamicInvoke(this, arg);
-                }
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));            
         }
 
         protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)

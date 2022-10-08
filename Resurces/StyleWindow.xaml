@@ -14,7 +14,7 @@
         <Setter Property="Margin" Value="5"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Foreground" Value="{StaticResource TextBlock.Text_A}"/>
-    </Style> 
+    </Style>    
     <Style x:Key="TextBox_A" TargetType="TextBox">       
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Height" Value="30"/>
@@ -61,9 +61,15 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="SystemButton" TargetType="Button" BasedOn="{StaticResource Button_A}">
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="FontSize" Value="9"/>        
+    </Style>
     <Style x:Key="Border" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource TextBlock.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Border.Color}"/>
+        <Setter Property="BorderThickness" Value="1"/>
     </Style>
     <Style x:Key="List" TargetType="ListBox">
         <Setter Property="Background" Value="{StaticResource Background}"/>

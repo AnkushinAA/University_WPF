@@ -5,22 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:University_WPF.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="450" d:DesignWidth="500"
              x:Name="UserControlButtons">
     <UserControl.Resources>
-        <ResourceDictionary Source="..\Stylewindow.xaml"/>
+        <ResourceDictionary Source="..\Resurces\Stylewindow.xaml"/>
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>            
-        </Grid.RowDefinitions>        
-        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="FirstButton" Content="{Binding TextFirstButton}" Style="{StaticResource Button_A}"/>
             <Button x:Name="LastButton" Content="{Binding TextLastButton}" Style="{StaticResource Button_A}"/>
-        </StackPanel>
-    </Grid>
+    </StackPanel>
+    
 </UserControl>
